@@ -9,6 +9,7 @@ import Root from './root/Root.jsx'
 import Login from './Login/Login.jsx'
 import Registration from './Registration/Registration.jsx'
 import ContextProvider from './Context/ContextProvider.jsx'
+import ForgetPass from './Login/ForgetPass.jsx'
 
 const route = createBrowserRouter([
   {
@@ -29,6 +30,8 @@ const route = createBrowserRouter([
       },
       {
         path: "register", element: <Registration />
+      }, {
+        path: "/forget_password", element: <ForgetPass />
       }
     ]
   }

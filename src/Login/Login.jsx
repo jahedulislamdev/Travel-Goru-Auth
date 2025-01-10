@@ -15,10 +15,14 @@ const Login = () => {
       //login user with email and password 
       userLogin(Email, Password)
          .then((res) => {
+            //check email verification
+            if (!res.user.emailVerified) {
+               toast.error("Please verify your email")
+               return;
+            }
             setUser(res.user)
             toast.success("Login Successfull")
             e.target.reset();
-
          })
          .catch((err) => {
             console.error(err)
@@ -26,7 +30,6 @@ const Login = () => {
                toast.error("invalid email or password")
             }
          });
-
    };
    return (
       <div className="md:w-2/6 mt-4 mx-auto">
@@ -60,7 +63,7 @@ const Login = () => {
                      <input type="checkbox" className="form-checkbox" />
                      <span className="ms-1 text-sm text-gray-700">Remember Me</span>
                   </label>
-                  <Link className="text-yellow-600">Forget password ?</Link>
+                  <Link to={"/forget_password"} className="text-yellow-600">Forget password ?</Link>
                </div>
             </div>
             <div className="flex items-center justify-between">

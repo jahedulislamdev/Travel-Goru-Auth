@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "firebase/auth";
 import app from '../Firebase/Firebase';
 import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
@@ -38,6 +38,12 @@ const ContextProvider = ({ children }) => {
       })
    }, [user, auth]);
 
+   // reset password
+   const resetPassword = (email) => {
+      setLoading(true);
+      return sendPasswordResetEmail(auth, email)
+   }
+
    // signout user
    const userLogout = () => {
       setLoading(true)
@@ -51,7 +57,7 @@ const ContextProvider = ({ children }) => {
             setLoading(false)
          });
    }
-   const ProvidedData = { user, setUser, userRegistration, userLogin, userLogout, loading };
+   const ProvidedData = { user, setUser, userRegistration, userLogin, userLogout, loading, resetPassword };
 
    return (
       <DataProvider.Provider value={ProvidedData}>

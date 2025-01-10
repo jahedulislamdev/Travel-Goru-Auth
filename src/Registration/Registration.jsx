@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { DataProvider } from '../Context/ContextProvider';
 import toast, { Toaster } from 'react-hot-toast';
+import { sendEmailVerification } from 'firebase/auth';
 
 const Registration = () => {
    const { userRegistration, setUser } = useContext(DataProvider)
@@ -27,14 +28,18 @@ const Registration = () => {
          toast.error("accept our terms and conditions")
          return;
       }
-
+      // Create user with email and password
       userRegistration(Email, password)
          .then((res) => {
-            console.log(res.user)
+            //varified email after registration
+            sendEmailVerification(res.user)
+               .then(() => {
+                  alert("Email verification link sent to your email")
+               })
+               .catch(err => console.error(err))
             toast.success("user create successfully")
          })
          .catch((error) => {
-            console.error(error)
             if (error.code === 'auth/email-already-in-use') {
                toast.error("Email already in use")
             }
