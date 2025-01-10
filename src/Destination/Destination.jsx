@@ -12,7 +12,7 @@ const Destination = () => {
       <div style={{ backgroundImage: `url(${seaBeach})` }} className='bg-cover bg-center h-screen'>
          <div className="lg:grid grid-cols-5 justify-between items-center lg:gap-x-5 bg-black bg-opacity-70 h-full text-white">
             <div className='space-y-4 p-8 col-span-3'>
-               <h1 className='uppercase text-7xl font-semibold'>Cox&apos;s bazar</h1>
+               <h1 className='uppercase text-5xl lg:text-7xl font-semibold'>Cox&apos;s bazar</h1>
                <p className=' font-light text-gray-300 text-justify'>Cox&apos;s Bazar is a town on the southeast coast of Bangladesh. It’s known for its very long, sandy beachfront, stretching from Sea Beach in the north to Kolatoli Beach in the south. Aggameda Khyang monastery is home to bronze statues and centuries-old Buddhist manuscripts. South of town, the tropical rainforest of Himchari National Park has waterfalls and many birds. North, sea turtles breed on nearby Sonadia Island.</p>
             </div>
             <div className='bg-white col-span-2 p-4 m-4 md:me-4 rounded text-black'>
