@@ -6,7 +6,7 @@ import { DataProvider } from "../Context/ContextProvider";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-   const { userLogin, user, setUser, userLogout } = useContext(DataProvider);
+   const { userLogin, user, setUser, userLogout, loginWithGoogle } = useContext(DataProvider);
    const handleSubmit = (e) => {
       e.preventDefault();
       const Email = e.target.email.value;
@@ -101,7 +101,7 @@ const Login = () => {
                Continue with Facebook
             </button>
             {/* Google Button */}
-            <button className="flex items-center justify-center w-full max-w-sm px-4 py-2 text-black bg-white border rounded-full shadow hover:bg-gray-200 transition-colors">
+            <button onClick={loginWithGoogle} className="flex items-center justify-center w-full max-w-sm px-4 py-2 text-black bg-white border rounded-full shadow hover:bg-gray-200 transition-colors">
                <img
                   src={GoogleLogo}
                   alt="Google logo"

@@ -13,7 +13,7 @@ const Navbar = () => {
       <>
          <li><Link to={'/'}>News</Link></li>
          <li><Link to={'/destination'}>Destination</Link></li>
-         <li><Link to={'/'}>Blog</Link></li>
+         <li><Link to={'/blog'}>Blog</Link></li>
          <li><Link to={'/'}>Contact</Link></li>
          {!user && (
             <li>
@@ -57,7 +57,7 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6 lg:space-x-10">
-               <ul className="flex space-x-4 text-sm md:text-md lg:text-lg">
+               <ul className="flex space-x-7 text-sm md:text-md lg:text-lg">
                   {navLinks}
                </ul>
 

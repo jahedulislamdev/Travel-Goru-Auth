@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, updateProfile } from "firebase/auth";
 import app from '../Firebase/Firebase';
 import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
@@ -13,11 +13,34 @@ const ContextProvider = ({ children }) => {
    // Up-to-date user 
    const [user, setUser] = useState(null);
 
-   // Create user 
+   // Create user with eamil and password
    const userRegistration = (email, password) => {
       setLoading(true)
       return createUserWithEmailAndPassword(auth, email, password);
    };
+   //login user with google
+   const loginWithGoogle = () => {
+      setLoading(true)
+      if (user) {
+         toast.error("Already Logged In")
+         return;
+      }
+      const googleProvider = new GoogleAuthProvider();
+      signInWithPopup(auth, googleProvider)
+         .then(res => {
+            updateProfile(res.user, {
+               displayName: res.user.displayName,
+               photoURL: res.user.photoURL
+            })
+            console.log(res.user)
+            setUser(res.user)
+         })
+         .catch(error => {
+            console.error(error)
+            toast.error(error.message)
+            setLoading(false)
+         })
+   }
 
    // Login user
    const userLogin = (email, password) => {
@@ -58,7 +81,7 @@ const ContextProvider = ({ children }) => {
             setLoading(false)
          });
    }
-   const ProvidedData = { user, setUser, userRegistration, userLogin, userLogout, loading, resetPassword };
+   const ProvidedData = { user, setUser, userRegistration, userLogin, loginWithGoogle, userLogout, loading, resetPassword };
 
    return (
       <DataProvider.Provider value={ProvidedData}>

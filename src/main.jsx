@@ -10,6 +10,8 @@ import Login from './Login/Login.jsx'
 import Registration from './Registration/Registration.jsx'
 import ContextProvider from './Context/ContextProvider.jsx'
 import ForgetPass from './Login/ForgetPass.jsx'
+import PrivateRoute from './Private/PrivateRoute.jsx'
+import Blog from './Blog/Blog.jsx'
 
 const route = createBrowserRouter([
   {
@@ -32,6 +34,9 @@ const route = createBrowserRouter([
         path: "register", element: <Registration />
       }, {
         path: "/forget_password", element: <ForgetPass />
+      },
+      {
+        path: "/blog", element: <PrivateRoute><Blog /></PrivateRoute>
       }
     ]
   }
