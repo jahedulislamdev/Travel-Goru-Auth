@@ -21,6 +21,7 @@ const Login = () => {
                return;
             }
             setUser(res.user)
+            console.log(res.user)
             toast.success("Login Successfull")
             e.target.reset();
          })

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { DataProvider } from '../Context/ContextProvider';
 import toast, { Toaster } from 'react-hot-toast';
-import { sendEmailVerification } from 'firebase/auth';
+import { sendEmailVerification, updateProfile } from 'firebase/auth';
 
 const Registration = () => {
    const { userRegistration, setUser } = useContext(DataProvider)
@@ -13,7 +13,7 @@ const Registration = () => {
       const Email = UserData.get('email');
       const password = UserData.get('password');
       const ConfirmPassword = UserData.get('ConfirmPassword');
-      // const LName = UserData.get('LName');
+      const LName = UserData.get('LName');
       const remember = e.target.remembering.checked;
 
       //Essential Validation after form submission
@@ -31,6 +31,10 @@ const Registration = () => {
       // Create user with email and password
       userRegistration(Email, password)
          .then((res) => {
+            //update user information 
+            updateProfile(res.user, {
+               displayName: LName,
+            })
             //varified email after registration
             sendEmailVerification(res.user)
                .then(() => {
@@ -38,6 +42,7 @@ const Registration = () => {
                })
                .catch(err => console.error(err))
             toast.success("user create successfully")
+            e.target.reset();
          })
          .catch((error) => {
             if (error.code === 'auth/email-already-in-use') {

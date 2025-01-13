@@ -29,14 +29,15 @@ const ContextProvider = ({ children }) => {
    useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
          if (user) {
-            setUser(currentUser)
+            setUser(currentUser);
          }
-         return () => {
-            unsubscribe();
-            setLoading(false)
-         }
-      })
-   }, [user, auth]);
+         setLoading(false);
+      });
+      return () => {
+         unsubscribe();
+      };
+   }, [auth, user]);
+
 
    // reset password
    const resetPassword = (email) => {
