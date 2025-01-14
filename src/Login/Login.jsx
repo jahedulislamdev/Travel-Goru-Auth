@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import FacebookLogo from "../assets/images/icons/fb.png"
 import GoogleLogo from "../assets/images/icons/google.png"
 import { useContext } from "react";
@@ -7,8 +7,11 @@ import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
    const { userLogin, user, setUser, userLogout, loginWithGoogle } = useContext(DataProvider);
+   const location = useLocation();
+   const navigate = useNavigate();
    const handleSubmit = (e) => {
       e.preventDefault();
+      setUser(null) // reset user state based on user interaction
       const Email = e.target.email.value;
       const Password = e.target.password.value;
 
@@ -21,9 +24,9 @@ const Login = () => {
                return;
             }
             setUser(res.user)
-            console.log(res.user)
             toast.success("Login Successfull")
             e.target.reset();
+            navigate(location?.state ? location.state : "/"); // if location.state is exist? then navigate this otherwise go to the home 
          })
          .catch((err) => {
             console.error(err)

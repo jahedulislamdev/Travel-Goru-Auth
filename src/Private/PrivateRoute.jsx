@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 const PrivateRoute = ({ children }) => {
    const { user, loading } = useContext(DataProvider);
    const clickedRoute = useLocation();
-   console.log(clickedRoute.pathname)
    if (loading) {
       return (
          <div className="flex justify-center items-center h-screen">
@@ -18,7 +17,7 @@ const PrivateRoute = ({ children }) => {
       return children;
    }
    return (
-      <Navigate state={location.pathname} to={"/login"}></Navigate>
+      <Navigate state={clickedRoute.pathname} to={"/login"}></Navigate>
    );
 };
 PrivateRoute.propTypes = {
