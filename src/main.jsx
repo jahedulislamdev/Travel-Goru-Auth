@@ -12,6 +12,7 @@ import ContextProvider from './Context/ContextProvider.jsx'
 import ForgetPass from './Login/ForgetPass.jsx'
 import PrivateRoute from './Private/PrivateRoute.jsx'
 import Blog from './Blog/Blog.jsx'
+import News from './News/News.jsx'
 
 const route = createBrowserRouter([
   {
@@ -37,6 +38,9 @@ const route = createBrowserRouter([
       },
       {
         path: "/blog", element: <PrivateRoute><Blog /></PrivateRoute>
+      },
+      {
+        path: "/news", element: <News />
       }
     ]
   }

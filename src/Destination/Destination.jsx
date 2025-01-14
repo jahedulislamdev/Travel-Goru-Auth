@@ -21,11 +21,18 @@ const Destination = () => {
                   <label className="label">
                      <span className="label-text">Origin</span>
                   </label>
-                  <select className=" select w-full bg-gray-300  border border-gray-300">
-                     <option disabled selected>Dhaka</option>
+                  <select
+                     className="select w-full bg-gray-300 border border-gray-300"
+                     defaultValue=""
+                  >
+                     <option value="" disabled>
+                        Select a spot
+                     </option>
                      {
                         TouristSpot.map((spot, index) => (
-                           <option key={index} className='bg-gray-300 text-black'>{spot}</option>
+                           <option key={index} id={spot} value={spot} className="bg-gray-300 text-black">
+                              {spot}
+                           </option>
                         ))
                      }
                   </select>

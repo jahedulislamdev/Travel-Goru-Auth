@@ -11,7 +11,7 @@ const Navbar = () => {
    // Navigation Links
    const navLinks = (
       <>
-         <li><Link to={'/'}>News</Link></li>
+         <li><Link to={'/news'}>News</Link></li>
          <li><Link to={'/destination'}>Destination</Link></li>
          <li><Link to={'/blog'}>Blog</Link></li>
          <li><Link to={'/'}>Contact</Link></li>
