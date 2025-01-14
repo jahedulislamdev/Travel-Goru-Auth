@@ -22,7 +22,7 @@ const Blog = () => {
                   <p className="text-gray-300">Get ready for your next adventure with our comprehensive guide on adventure travel.</p>
                </article>
                <article className="mb-5 border p-2 rounded">
-                  <h2 className="text-2xl text-blue-300 font-semibold">Cultural Experiences You Can't Miss</h2>
+                  <h2 className="text-2xl text-blue-300 font-semibold">Cultural Experiences You dont&apos;t  Miss</h2>
                   <p className="text-gray-300">Immerse yourself in unique cultural experiences around the globe.</p>
                </article>
                <article className="mb-5 border p-2 rounded">
